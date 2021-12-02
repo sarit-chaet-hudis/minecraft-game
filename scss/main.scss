@@ -23,6 +23,15 @@ main {
 }
 
 .dirt {
-  background: url("/assets/images/dirt.jpeg") no-repeat center center\cover;
-  background: brown;
+  background: sienna;
+  background: url("/assets/images/dirt.jpeg") no-repeat center center/cover;
+}
+.grass {
+  background: rgb(11, 139, 22);
+  background: url("/assets/images/ground-grass.jpeg") no-repeat center
+    center/cover;
+}
+
+.wood {
+    background: 
 }

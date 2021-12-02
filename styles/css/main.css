@@ -38,5 +38,12 @@ main .boardContainer {
   background-color: lightskyblue; }
 
 .dirt {
-  background: url("/assets/images/dirt.jpeg") no-repeat center center\cover;
-  background: brown; }
+  background: sienna;
+  background: url("/assets/images/dirt.jpeg") no-repeat center center/cover; }
+
+.grass {
+  background: #0b8b16;
+  background: url("/assets/images/ground-grass.jpeg") no-repeat center center/cover; }
+
+.wood {
+  background: dark; }
