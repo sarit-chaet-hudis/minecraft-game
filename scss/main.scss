@@ -5,3 +5,23 @@ body {
   display: grid;
   grid-template-columns: 80% 20%;
 }
+
+main {
+  .boardContainer {
+    margin: auto;
+    display: grid;
+    width: 100vmin;
+    height: 100vmin;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr);
+  }
+}
+
+.sky {
+  background-color: lightskyblue;
+}
+
+.dirt {
+  background: url("/assets/images/dirt.jpeg") no-repeat center center\cover;
+  background: brown;
+}
