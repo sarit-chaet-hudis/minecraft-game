@@ -36,17 +36,17 @@ let selectedTool = "";
 
 const boardMatrix = initMatrix();
 
-const boardContainer = document.querySelector(".boardContainer");
+let boardContainer = document.querySelector(".boardContainer");
 
 function drawBoard(boardMatrix, boardContainer) {
+  boardContainer = document.querySelector(".boardContainer");
   boardContainer.innerHTML = "";
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
-    //rows
     for (let j = 0; j < MATRIX_WIDTH; j++) {
-      //cols
       const newTile = document.createElement("div");
-      newTile.style.gridRowStart = i + 1;
-      newTile.style.gridColumnStart = j + 1;
+      newTile.setAttribute("y", i);
+      newTile.setAttribute("x", j);
+      newTile.addEventListener("click", tryMining);
       switch (boardMatrix[i][j]) {
         case 0:
           newTile.classList.add(textures.sky);
@@ -76,5 +76,19 @@ function selectTool(e) {
     t.classList.remove("selected");
   });
   e.currentTarget.classList.add("selected");
-  console.log("selected ", e.currentTarget.getAttribute("data-toolType"));
+}
+
+function tryMining(e) {
+  console.log(e.target);
+  const selectedTool =
+    document.querySelector(".selected").getAttribute("data-toolType") || ""; //TODO no error when no tool selected
+  const tileToMine = e.currentTarget.classList[0];
+  if (selectedTool === "shovel" && tileToMine === "dirt") {
+    console.log(e.currentTarget);
+    // const y = e.currentTarget.y;
+    // const x = e.currentTarget.x;
+    // boardMatrix[x][y] = 0;
+    //create tile only
+    //background cont sky color?
+  }
 }

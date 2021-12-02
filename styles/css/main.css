@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: #333; }
+  background-color: rgba(51, 51, 51, 0.3); }
   .sidebar .toolsContainer {
     display: flex;
     flex-direction: column;
@@ -44,6 +44,3 @@ main .boardContainer {
 .grass {
   background: #0b8b16;
   background: url("/assets/images/ground-grass.jpeg") no-repeat center center/cover; }
-
-.wood {
-  background: dark; }
