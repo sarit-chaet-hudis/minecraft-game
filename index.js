@@ -13,7 +13,8 @@ function initMatrix() {
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
     res[i] = [];
     for (let j = 0; j < MATRIX_WIDTH; j++) {
-      if (i < 12) { //dirt
+      if (i < 12) {
+        //dirt
         res[i][j] = 0;
       } else {
         res[i][j] = 1;
@@ -22,6 +23,13 @@ function initMatrix() {
   }
   return res;
 }
+
+function initTools() {
+  const tools = document.querySelectorAll(".tool");
+  tools.forEach((tool) => tool.addEventListener("click", selectTool));
+}
+
+let selectedTool = "";
 
 const boardMatrix = initMatrix();
 
@@ -54,6 +62,12 @@ function drawBoard(boardMatrix, boardContainer) {
 
 drawBoard(boardMatrix, boardContainer);
 
-// maybe later do drawTile ?
+initTools();
 
-// function addTile(tile, boardContainer) {}
+function selectTool(e) {
+  const allTools = document.querySelectorAll(".tool");
+  allTools.forEach((t) => {
+    t.classList.remove("selected");
+  });
+  e.currentTarget.classList.add("selected");
+}
