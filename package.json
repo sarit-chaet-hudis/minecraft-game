@@ -1,0 +1,22 @@
+{
+  "name": "minecraft-game",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "node-sass -w scss/ -o styles/css --recursive"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sarit-chaet-hudis/minecraft-game.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sarit-chaet-hudis/minecraft-game/issues"
+  },
+  "homepage": "https://github.com/sarit-chaet-hudis/minecraft-game#readme",
+  "dependencies": {
+    "node-sass": "^6.0.1"
+  }
+}
