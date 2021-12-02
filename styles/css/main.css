@@ -1,2 +1,15 @@
-* {
-  color: hotpink; }
+div {
+  min-width: 40px;
+  min-height: 40px;
+  border: 1px solid salmon; }
+
+.sidebar {
+  background-color: #333; }
+  .sidebar .toolsContainer .tool {
+    margin: 20px; }
+  .sidebar .inventory .resource {
+    margin: 20px; }
+
+body {
+  display: grid;
+  grid-template-columns: 80% 20%; }
