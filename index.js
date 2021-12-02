@@ -9,22 +9,17 @@ const textures = {
 };
 
 function initMatrix() {
-  let row = [];
+  let res = [];
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
-    row[i] = []
-    
+      res[i] = [];
     for (let j = 0; j < MATRIX_WIDTH; j++) {
-      
-      row[i].push = 0;
+      res[i][j]= 0;
     }
   }
-  return row;
-  //   return Array(MATRIX_HEIGHT).fill(Array(MATRIX_WIDTH).fill(0));
+  return res;
 }
 
 const boardMatrix = initMatrix();
-boardMatrix[3][2] = 1;
-console.log(boardMatrix);
 
 const boardContainer = document.querySelector(".boardContainer");
 
@@ -45,7 +40,7 @@ function drawBoard(boardMatrix, boardContainer) {
           newTile.classList.add(textures.dirt);
           break;
         default:
-          newTile.classList.add(textures.dirt);
+          newTile.classList.add(textures.sky);
           break;
       }
       boardContainer.appendChild(newTile);
@@ -54,7 +49,7 @@ function drawBoard(boardMatrix, boardContainer) {
 }
 
 
-// drawBoard(boardMatrix, boardContainer);
+drawBoard(boardMatrix, boardContainer);
 
 // maybe later do drawTile ?
 
