@@ -32,7 +32,8 @@ main .boardContainer {
   width: 100vmin;
   height: 100vmin;
   grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr); }
+  grid-template-rows: repeat(20, 1fr);
+  background-color: lightskyblue; }
 
 .sky {
   background-color: lightskyblue; }
