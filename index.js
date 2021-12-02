@@ -11,9 +11,13 @@ const textures = {
 function initMatrix() {
   let res = [];
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
-      res[i] = [];
+    res[i] = [];
     for (let j = 0; j < MATRIX_WIDTH; j++) {
-      res[i][j]= 0;
+      if (i < 12) { //dirt
+        res[i][j] = 0;
+      } else {
+        res[i][j] = 1;
+      }
     }
   }
   return res;
@@ -47,7 +51,6 @@ function drawBoard(boardMatrix, boardContainer) {
     }
   }
 }
-
 
 drawBoard(boardMatrix, boardContainer);
 
