@@ -37,19 +37,13 @@ function initMatrix() {
       } else if (i == 13) {
         //grass
         res[i][j] = 2;
-      } else  if (i > 13 && i < 17) {
+      } else if (i > 13 && i < 17) {
         res[i][j] = 1;
       } else {
         res[i][j] = 3;
       }
     }
   }
-  // hard code some more elements
-  // rocks
-  // res[16][3] = 3;
-  // res[16][7] = 3;
-  // res[16][8] = 3;
-  // res[16][8] = 3;
   //wood
   res[12][13] = 4;
   res[11][13] = 4;
@@ -68,9 +62,6 @@ function initMatrix() {
   res[8][13] = 5;
   res[8][14] = 5;
   res[7][13] = 5;
-
-
-
 
   //diamonds
   res[19][4] = 6;
@@ -165,9 +156,9 @@ function tryMining(e) {
     //create tile only // TODO
   } else {
     console.log("wrong tool");
-    selectedTool.style.animation = "wrongTool 1s linear";
+    selectedTool.classList.add("wrong");
     selectedTool.addEventListener("animationend", () => {
-      selectedTool.style.webkitAnimationPlayState = "paused";
+      selectedTool.classList.remove("wrong");
     });
   }
 }

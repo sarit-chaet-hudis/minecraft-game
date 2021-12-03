@@ -10,7 +10,7 @@
     .tool {
       background: #8b8b8b;
       border: 3px solid;
-      border-color:  #484848 white white #484848;
+      border-color: #484848 white white #484848;
       margin: 15px;
       figure {
         margin-inline-end: 15px;
@@ -28,7 +28,7 @@
     }
 
     .wrong {
-      
+      animation: wrongTool 1s linear;
     }
 
     @keyframes wrongTool {

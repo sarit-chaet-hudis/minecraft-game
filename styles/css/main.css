@@ -21,6 +21,8 @@
           height: 100%; }
     .sidebar .toolsContainer .selected {
       background: lightsteelblue; }
+    .sidebar .toolsContainer .wrong {
+      animation: wrongTool 1s linear; }
 
 @keyframes wrongTool {
   10%,
