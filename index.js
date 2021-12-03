@@ -180,6 +180,7 @@ function tryMining(e) {
   } else if (miningPossible[selectedToolType].includes(tileToMine)) {
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
+    // replaceTile(x,y,"sky") => updates martix + changes div to new class
     boardMatrix[y][x] = 0;
     drawBoard(boardMatrix);
     inventory[tileToMine]++;
@@ -195,10 +196,16 @@ function tryMining(e) {
 }
 
 function refreshInventory() {
-  const resourceAmounts = document.querySelectorAll(".resourceAmount");
+  const resourcesDisplay = document.querySelectorAll(".resource");
   Object.entries(inventory).forEach(([key, value], index) => {
     if (value > 0) {
-      resourceAmounts[index].innerText = value;
+      resourcesDisplay[index].innerText = value;
+      resourcesDisplay[index].style.background = "blue";
     }
   });
 }
+
+// function replaceTile (x,y,newTile) {
+
+
+// }

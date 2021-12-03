@@ -43,14 +43,15 @@
 .inventory {
   display: grid;
   grid-template-columns: auto auto;
-  justify-content: center; }
+  justify-content: center;
+  margin-top: 15px; }
   .inventory .resource {
+    background: #8b8b8b;
     width: 60px;
     height: 60px;
-    background: #8b8b8b;
     border: 3px solid;
     border-color: #484848 white white #484848;
-    padding-top: 22px;
+    padding-top: 36px;
     padding-right: 2px;
     font-size: 16px;
     color: white;
