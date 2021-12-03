@@ -194,5 +194,9 @@ function tryMining(e) {
 }
 
 function refreshInventory() {
+  const resourceAmounts = document.querySelectorAll(".resourceAmount");
+  Object.entries(inventory).forEach(([key, value], index) => {
+    resourceAmounts[index].innerText = value;
+  });
   //display inventory refreshed
 }
