@@ -110,6 +110,13 @@ function initTools() {
   toolsDiv.forEach((tool) => tool.addEventListener("click", selectTool));
 }
 
+function initResources() {
+  const resourcesDivs = document.querySelectorAll(".resource");
+  resourcesDivs.forEach((resource) =>
+    resource.addEventListener("click", selectResource)
+  );
+}
+
 refreshInventory();
 
 let boardMatrix = initMatrix();
@@ -163,16 +170,34 @@ drawBoard(boardMatrix);
 
 initTools();
 
+initResources();
+
 function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
-  allTools.forEach((t) => {
-    t.classList.remove("selected");
+  allTools.forEach((t) => t.classList.remove("selectedTool"));
+  e.currentTarget.classList.add("selectedTool");
+  const boardElement = document.querySelector(".boardContainer");
+  let allBoardDivs = boardElement.querySelectorAll(":scope > div");
+  allBoardDivs.forEach((d) => {
+    d.removeEventListener("click", tryBuilding);
+    d.addEventListener("click", tryMining);
   });
-  e.currentTarget.classList.add("selected");
+}
+
+function selectResource(e) {
+  const allResouces = document.querySelectorAll(".resource");
+  allResouces.forEach((r) => r.classList.remove("selectedResource"));
+  e.currentTarget.classList.add("selectedResource");
+  const boardElement = document.querySelector(".boardContainer");
+  let allBoardDivs = boardElement.querySelectorAll(":scope > div");
+  allBoardDivs.forEach((d) => {
+    d.removeEventListener("click", tryMining);
+    d.addEventListener("click", tryBuilding);
+  });
 }
 
 function tryMining(e) {
-  const selectedTool = document.querySelector(".selected"); //TODO no error when no tool selected
+  const selectedTool = document.querySelector(".selectedTool"); //TODO no error when no tool selected
   const selectedToolType = selectedTool.getAttribute("data-toolType");
   const tileToMine = e.currentTarget.classList[0];
   if (tileToMine === "sky" || tileToMine === "cloud") {
@@ -195,6 +220,11 @@ function tryMining(e) {
   }
 }
 
+function tryBuilding(e) {
+  console.log("trying to build...");
+  // const selectedResource = ;
+}
+
 function refreshInventory() {
   const resourcesDisplay = document.querySelectorAll(".resource");
   Object.entries(inventory).forEach(([key, value], index) => {
@@ -205,7 +235,8 @@ function refreshInventory() {
   });
 }
 
-// function replaceTile (x,y,newTile) {
-
-
-// }
+// function udpateTile (x,y,newTile) {
+// gets x, y, new tile  >
+// replaces it in matrix
+// changes class of current div to newTile
+// gets called on mining and on building
