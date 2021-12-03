@@ -1,5 +1,6 @@
 .sidebar {
   background-color: rgba(0, 0, 0, 0.3);
+  background-color: #c6c6c6;
   .toolsContainer {
     display: flex;
     flex-direction: column;
@@ -7,7 +8,9 @@
     margin-top: 30px;
 
     .tool {
-      background: black;
+      background: #8b8b8b;
+      border: 3px solid;
+      border-color:  #484848 white white #484848;
       margin: 15px;
       figure {
         margin-inline-end: 15px;
@@ -21,11 +24,14 @@
       }
     }
     .selected {
-      background: hotpink;
+      background: lightsteelblue;
+    }
+
+    .wrong {
+      
     }
 
     @keyframes wrongTool {
-      
       10%,
       90% {
         background: red;

@@ -18,6 +18,14 @@ const miningPossible = {
   shovel: ["dirt", "grass"],
 };
 
+const inventory = {
+  dirt: 0,
+  grass: 0,
+  rock: 0,
+  wood: 0,
+  leaves: 0,
+};
+
 function initMatrix() {
   let res = [];
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
@@ -27,29 +35,47 @@ function initMatrix() {
         //dirt
         res[i][j] = 0;
       } else if (i == 13) {
+        //grass
         res[i][j] = 2;
-      } else {
+      } else  if (i > 13 && i < 17) {
         res[i][j] = 1;
+      } else {
+        res[i][j] = 3;
       }
     }
   }
   // hard code some more elements
   // rocks
-  res[12][3] = 3;
-  res[12][7] = 3;
-  res[12][8] = 3;
-  res[11][8] = 3;
+  // res[16][3] = 3;
+  // res[16][7] = 3;
+  // res[16][8] = 3;
+  // res[16][8] = 3;
   //wood
   res[12][13] = 4;
   res[11][13] = 4;
-  res[10][13] = 4;
   //leaves
+  res[10][11] = 5;
+  res[10][12] = 5;
+  res[10][13] = 5;
+  res[10][14] = 5;
+  res[10][15] = 5;
+  res[9][11] = 5;
+  res[9][12] = 5;
   res[9][13] = 5;
+  res[9][14] = 5;
+  res[9][15] = 5;
+  res[8][12] = 5;
+  res[8][13] = 5;
+  res[8][14] = 5;
+  res[7][13] = 5;
+
+
+
 
   //diamonds
-  res[15][4] = 6;
+  res[19][4] = 6;
   res[18][18] = 6;
-  
+
   //cloud
   res[3][3] = 7;
   res[3][4] = 7;
@@ -100,6 +126,9 @@ function drawBoard(boardMatrix) {
         case 6:
           newTile.classList.add(textures.diamonds);
           break;
+        case 7:
+          newTile.classList.add(textures.cloud);
+          break;
         default:
           newTile.classList.add(textures.sky);
           break;
@@ -127,13 +156,7 @@ function tryMining(e) {
   const tileToMine = e.currentTarget.classList[0];
   if (tileToMine === "sky" || tileToMine === "cloud") {
     return;
-  } else if (
-    miningPossible[selectedToolType].includes(tileToMine)
-    // tileToMine is included in selectedTool.allowedToMine
-    // (selectedToolType === "shovel" && tileToMine === "dirt") ||
-    // (selectedToolType === "shovel" && tileToMine === "grass")
-  ) {
-    // else: maybe msg user?
+  } else if (miningPossible[selectedToolType].includes(tileToMine)) {
     console.log(e.currentTarget);
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
@@ -141,7 +164,7 @@ function tryMining(e) {
     drawBoard(boardMatrix);
     //create tile only // TODO
   } else {
-    console.log("wrong otol");
+    console.log("wrong tool");
     selectedTool.style.animation = "wrongTool 1s linear";
     selectedTool.addEventListener("animationend", () => {
       selectedTool.style.webkitAnimationPlayState = "paused";
