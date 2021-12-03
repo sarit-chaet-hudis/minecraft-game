@@ -110,6 +110,8 @@ function initTools() {
   toolsDiv.forEach((tool) => tool.addEventListener("click", selectTool));
 }
 
+refreshInventory();
+
 let boardMatrix = initMatrix();
 
 let boardContainer;
@@ -182,7 +184,6 @@ function tryMining(e) {
     drawBoard(boardMatrix);
     inventory[tileToMine]++;
     refreshInventory();
-    console.log(inventory);
     //recreate single tile only // TODO
   } else {
     selectedTool.classList.add("wrong");
@@ -196,7 +197,8 @@ function tryMining(e) {
 function refreshInventory() {
   const resourceAmounts = document.querySelectorAll(".resourceAmount");
   Object.entries(inventory).forEach(([key, value], index) => {
-    resourceAmounts[index].innerText = value;
+    if (value > 0) {
+      resourceAmounts[index].innerText = value;
+    }
   });
-  //display inventory refreshed
 }

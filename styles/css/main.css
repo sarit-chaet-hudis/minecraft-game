@@ -45,25 +45,25 @@
   grid-template-columns: auto auto;
   justify-content: center; }
   .inventory .resource {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     background: #8b8b8b;
     border: 3px solid;
-    border-color: #484848 white white #484848; }
-    .inventory .resource .resourceAmount {
-      margin-top: 34px;
-      padding-right: 2px;
-      font-size: 16px;
-      color: white;
-      text-align: right;
-      text-shadow: 2px 2px black; }
+    border-color: #484848 white white #484848;
+    padding-top: 22px;
+    padding-right: 2px;
+    font-size: 16px;
+    color: white;
+    text-align: right;
+    text-shadow: 2px 2px black; }
 
 @font-face {
   font-family: "minecraft";
   src: url("/assets/fonts/Minecraft.ttf"); }
 
 * {
-  font-family: "minecraft", "Courier New", Courier, monospace; }
+  font-family: "minecraft", "Courier New", Courier, monospace;
+  box-sizing: border-box; }
 
 body {
   display: grid;
