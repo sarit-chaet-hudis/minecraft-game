@@ -10,7 +10,9 @@ const textures = {
 };
 
 // const miningPossible = {
-//   axe: [wood, leaves],
+//   tool1: [wood, leaves],
+//   tool2: [2],
+
 // };   //TODO why is this breaking the code??
 
 function initMatrix() {
@@ -37,9 +39,7 @@ function initTools() {
 }
 
 
-
-
-let selectedTool = "";
+// let selectedTool = "";
 
 let boardMatrix = initMatrix();
 
@@ -101,7 +101,7 @@ function tryMining(e) {
     drawBoard(boardMatrix);
     //create tile only // TODO
   } else {
-      e.currentTarget.style.animation = "wrongTool 1s linear";
+    document.querySelector(".selected").style.animation = "wrongTool 1s linear";
       // give color of failed attempt for like 0.5 seconds
   }
 }

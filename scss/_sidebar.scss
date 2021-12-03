@@ -25,11 +25,10 @@
     }
 
     @keyframes wrongTool {
-      100% {
-        background: red;
-      }
+      
       10%,
       90% {
+        background: red;
         transform: translate3d(-1px, 0, 0);
       }
 
