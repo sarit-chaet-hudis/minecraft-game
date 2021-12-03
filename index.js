@@ -9,6 +9,10 @@ const textures = {
   leaves: "leaves",
 };
 
+// const miningPossible = {
+//   axe: [wood, leaves],
+// };   //TODO why is this breaking the code??
+
 function initMatrix() {
   let res = [];
   for (let i = 0; i < MATRIX_HEIGHT; i++) {
@@ -28,9 +32,12 @@ function initMatrix() {
 }
 
 function initTools() {
-  const tools = document.querySelectorAll(".tool");
-  tools.forEach((tool) => tool.addEventListener("click", selectTool));
+  const toolsDiv = document.querySelectorAll(".tool");
+  toolsDiv.forEach((tool) => tool.addEventListener("click", selectTool));
 }
+
+
+
 
 let selectedTool = "";
 
@@ -83,14 +90,18 @@ function tryMining(e) {
     document.querySelector(".selected").getAttribute("data-toolType") || ""; //TODO no error when no tool selected
   const tileToMine = e.currentTarget.classList[0];
   if (
-    (selectedTool === "shovel" && tileToMine === "dirt") ||
-    tileToMine === "grass"
-  ) {
+      // tileToMine is included in selectedTool.allowedToMine
+    (selectedTool === "shovel" && tileToMine === "dirt" ||
+    selectedTool === "shovel" && tileToMine === "grass")
+  ) { // else: make tool red. maybe msg user?
     console.log(e.currentTarget);
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
     boardMatrix[y][x] = 0;
     drawBoard(boardMatrix);
-    //create tile only
+    //create tile only // TODO
+  } else {
+      e.currentTarget.style.animation = "wrongTool 1s linear";
+      // give color of failed attempt for like 0.5 seconds
   }
 }

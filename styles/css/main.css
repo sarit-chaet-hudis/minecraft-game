@@ -1,5 +1,5 @@
 .sidebar {
-  background-color: rgba(51, 51, 51, 0.3); }
+  background-color: rgba(0, 0, 0, 0.3); }
   .sidebar .toolsContainer {
     display: flex;
     flex-direction: column;
@@ -18,8 +18,26 @@
           height: 100%; }
     .sidebar .toolsContainer .selected {
       background: hotpink; }
-  .sidebar .inventory .resource {
-    margin: 20px; }
+
+@keyframes wrongTool {
+  100% {
+    background: red; }
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0); }
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0); } }
+
+.inventory .resource {
+  margin: 20px; }
 
 body {
   display: grid;
@@ -32,8 +50,7 @@ main .boardContainer {
   width: 100vmin;
   height: 100vmin;
   grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr);
-  background-color: lightskyblue; }
+  grid-template-rows: repeat(20, 1fr); }
 
 .sky {
   background-color: lightskyblue; }
