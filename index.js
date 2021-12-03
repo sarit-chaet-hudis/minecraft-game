@@ -14,7 +14,7 @@ const textures = {
 
 const miningPossible = {
   axe: ["wood", "leaves"],
-  pickaxe: ["rock"],
+  pickaxe: ["rock", "diamonds"],
   shovel: ["dirt", "grass"],
 };
 
@@ -24,6 +24,7 @@ const inventory = {
   rock: 0,
   wood: 0,
   leaves: 0,
+  diamonds: 0,
 };
 
 function initMatrix() {
@@ -74,6 +75,33 @@ function initMatrix() {
   res[3][6] = 7;
   res[2][4] = 7;
   res[2][5] = 7;
+
+  //big cloud
+  res[5][19] = 7;
+  res[5][18] = 7;
+  res[5][17] = 7;
+  res[5][16] = 7;
+  // res[5][15] = 7;
+  // res[5][14] = 7;
+  // res[5][13] = 7;
+  // res[5][12] = 7;
+  // res[5][11] = 7;
+  // res[5][10] = 7;
+  res[4][19] = 7;
+  res[4][18] = 7;
+  res[4][17] = 7;
+  res[4][16] = 7;
+  res[4][15] = 7;
+  res[4][14] = 7;
+  res[3][19] = 7;
+  res[3][18] = 7;
+  res[3][17] = 7;
+  res[3][16] = 7;
+  res[3][15] = 7;
+  res[2][19] = 7;
+  res[2][18] = 7;
+  res[2][17] = 7;
+
   return res;
 }
 
@@ -148,17 +176,23 @@ function tryMining(e) {
   if (tileToMine === "sky" || tileToMine === "cloud") {
     return;
   } else if (miningPossible[selectedToolType].includes(tileToMine)) {
-    console.log(e.currentTarget);
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
     boardMatrix[y][x] = 0;
     drawBoard(boardMatrix);
-    //create tile only // TODO
+    inventory[tileToMine]++;
+    refreshInventory();
+    console.log(inventory);
+    //recreate single tile only // TODO
   } else {
-    console.log("wrong tool");
     selectedTool.classList.add("wrong");
     selectedTool.addEventListener("animationend", () => {
       selectedTool.classList.remove("wrong");
+      //msg user?
     });
   }
+}
+
+function refreshInventory() {
+  //display inventory refreshed
 }

@@ -1,6 +1,15 @@
 @import "utils";
 @import "sidebar";
 
+@font-face {
+  font-family: "minecraft";
+  src: url("/assets/fonts/Minecraft.ttf");
+}
+
+* {
+  font-family: "minecraft", "Courier New", Courier, monospace;
+}
+
 body {
   display: grid;
   grid-template-columns: auto 200px;
