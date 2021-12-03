@@ -54,6 +54,9 @@ main .boardContainer {
 .sky {
   background-color: lightskyblue; }
 
+.cloud {
+  background-color: whitesmoke; }
+
 .dirt {
   background: sienna;
   background: url("/assets/images/dirt.jpeg") no-repeat center center/cover; }
@@ -61,3 +64,15 @@ main .boardContainer {
 .grass {
   background: #0b8b16;
   background: url("/assets/images/ground-grass.jpeg") no-repeat center center/cover; }
+
+.rock {
+  background: url("/assets/images/stone.jpeg") no-repeat center center/cover; }
+
+.wood {
+  background: url("/assets/images/wood.png") no-repeat center center/cover; }
+
+.leaves {
+  background: url("/assets/images/leaves.jpeg") no-repeat center center/cover; }
+
+.diamonds {
+  background: url("/assets/images/diamond.png") no-repeat center center/cover; }
