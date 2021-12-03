@@ -123,6 +123,29 @@ let boardMatrix = initMatrix();
 
 let boardContainer;
 
+getTileFromNumber = (num) => {
+  switch (num) {
+    case 0:
+      return textures.sky;
+    case 1:
+      return textures.dirt;
+    case 2:
+      return textures.grass;
+    case 3:
+      return textures.rock;
+    case 4:
+      return textures.wood;
+    case 5:
+      return textures.leaves;
+    case 6:
+      return textures.diamonds;
+    case 7:
+      return textures.cloud;
+    default:
+      return textures.sky;
+  }
+};
+
 function drawBoard(boardMatrix) {
   boardContainer = document.querySelector(".boardContainer");
   boardContainer.innerHTML = "";
@@ -132,35 +155,7 @@ function drawBoard(boardMatrix) {
       newTile.setAttribute("y", i);
       newTile.setAttribute("x", j);
       newTile.addEventListener("click", tryMining);
-      switch (boardMatrix[i][j]) {
-        case 0:
-          newTile.classList.add(textures.sky);
-          break;
-        case 1:
-          newTile.classList.add(textures.dirt);
-          break;
-        case 2:
-          newTile.classList.add(textures.grass);
-          break;
-        case 3:
-          newTile.classList.add(textures.rock);
-          break;
-        case 4:
-          newTile.classList.add(textures.wood);
-          break;
-        case 5:
-          newTile.classList.add(textures.leaves);
-          break;
-        case 6:
-          newTile.classList.add(textures.diamonds);
-          break;
-        case 7:
-          newTile.classList.add(textures.cloud);
-          break;
-        default:
-          newTile.classList.add(textures.sky);
-          break;
-      }
+      newTile.classList.add(getTileFromNumber(boardMatrix[i][j]));
       boardContainer.appendChild(newTile);
     }
   }
@@ -205,7 +200,6 @@ function tryMining(e) {
   } else if (miningPossible[selectedToolType].includes(tileToMine)) {
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
-    // replaceTile(x,y,"sky") => updates martix + changes div to new class
     boardMatrix[y][x] = 0;
     drawBoard(boardMatrix);
     inventory[tileToMine]++;
@@ -221,11 +215,18 @@ function tryMining(e) {
 }
 
 function tryBuilding(e) {
-  console.log("trying to build...");
-  // const selectedResource = ;
+  const selectedResource = document.querySelector(".selectedResource");
+  const selectedResourceType =
+    selectedResource.getAttribute("data-resourceType");
+  const tileToBuild = e.currentTarget.classList[0];
+  if (tileToBuild === "sky" || tileToBuild === "cloud") {
+    //change tile (matrix + div)
+    //reduce inventory
+    refreshInventoryDisplay();
+  }
 }
 
-function refreshInventory() {
+function refreshInventoryDisplay() {
   const resourcesDisplay = document.querySelectorAll(".resource");
   Object.entries(inventory).forEach(([key, value], index) => {
     if (value > 0) {
@@ -236,6 +237,8 @@ function refreshInventory() {
 }
 
 // function udpateTile (x,y,newTile) {
+
+// }
 // gets x, y, new tile  >
 // replaces it in matrix
 // changes class of current div to newTile
