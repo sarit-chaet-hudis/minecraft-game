@@ -117,7 +117,7 @@ function initResources() {
   );
 }
 
-refreshInventory();
+refreshInventoryDisplay();
 
 let boardMatrix = initMatrix();
 
@@ -203,8 +203,8 @@ function tryMining(e) {
     boardMatrix[y][x] = 0;
     drawBoard(boardMatrix);
     inventory[tileToMine]++;
-    refreshInventory();
-    //recreate single tile only // TODO
+    refreshInventoryDisplay();
+    //recreate single tile only? // TODO
   } else {
     selectedTool.classList.add("wrong");
     selectedTool.addEventListener("animationend", () => {
