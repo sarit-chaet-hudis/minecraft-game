@@ -46,7 +46,6 @@
   justify-content: center;
   margin-top: 15px; }
   .inventory .resource {
-    background: #8b8b8b;
     width: 60px;
     height: 60px;
     border: 3px solid;
@@ -57,6 +56,8 @@
     color: white;
     text-align: right;
     text-shadow: 2px 2px black; }
+  .inventory .empty {
+    background: #8b8b8b; }
   .inventory .selectedResource {
     border-width: 4px;
     border-color: white #484848 #484848 white; }

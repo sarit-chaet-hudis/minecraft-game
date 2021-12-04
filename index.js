@@ -68,12 +68,18 @@ function initMatrix() {
   res[19][4] = 6;
   res[18][18] = 6;
 
-  //cloud
+  //heart cloud
+  res[5][4] = 7;
+  res[4][3] = 7;
+  res[4][4] = 7;
+  res[4][5] = 7;
+  res[3][5] = 7;
+  res[3][2] = 7;
   res[3][3] = 7;
   res[3][4] = 7;
   res[3][5] = 7;
   res[3][6] = 7;
-  res[2][4] = 7;
+  res[2][3] = 7;
   res[2][5] = 7;
 
   //big cloud
@@ -81,12 +87,6 @@ function initMatrix() {
   res[5][18] = 7;
   res[5][17] = 7;
   res[5][16] = 7;
-  // res[5][15] = 7;
-  // res[5][14] = 7;
-  // res[5][13] = 7;
-  // res[5][12] = 7;
-  // res[5][11] = 7;
-  // res[5][10] = 7;
   res[4][19] = 7;
   res[4][18] = 7;
   res[4][17] = 7;
@@ -227,11 +227,18 @@ function tryBuilding(e) {
 }
 
 function refreshInventoryDisplay() {
-  const resourcesDisplay = document.querySelectorAll(".resource");
+  const resourcesDisplay = document.querySelector(".inventory");
+  resourcesDisplay.innerHTML = "";
   Object.entries(inventory).forEach(([key, value], index) => {
+    const newResource = document.createElement("div");
+    newResource.classList.add("resource");
     if (value > 0) {
-      resourcesDisplay[index].innerText = value;
-      resourcesDisplay[index].style.background = "blue";
+      newResource.innerText = value;
+      newResource.style.background = "blue";
+      resourcesDisplay.prepend(newResource);
+    } else {
+      newResource.classList.add("empty");
+      resourcesDisplay.append(newResource);
     }
   });
 }
