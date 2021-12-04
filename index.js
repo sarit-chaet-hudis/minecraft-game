@@ -170,6 +170,10 @@ function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
   allTools.forEach((t) => t.classList.remove("selectedTool"));
   e.currentTarget.classList.add("selectedTool");
+  const isSelectedResource = document.querySelector(".selectedResource");
+  if (isSelectedResource) {
+    isSelectedResource.classList.remove("selectedResource");
+  }
   if (!miningMode) {
     miningMode = true;
     const boardElement = document.querySelector(".boardContainer");
@@ -187,6 +191,10 @@ function selectResource(e) {
     prevSelected.classList.remove("selectedResource");
   }
   e.currentTarget.classList.add("selectedResource");
+  const isSelectedTool = document.querySelector(".selectedTool");
+  if (isSelectedTool) {
+    isSelectedTool.classList.remove("selectedTool");
+  }
   if (miningMode) {
     miningMode = false;
     const boardElement = document.querySelector(".boardContainer");
@@ -200,21 +208,24 @@ function selectResource(e) {
 
 function tryMining(e) {
   const selectedTool = document.querySelector(".selectedTool");
-  if (!selectTool) return;
-  const selectedToolType = selectedTool.getAttribute("data-toolType");
-  const tileToMine = e.currentTarget.classList[0];
-  if (tileToMine === "sky" || tileToMine === "cloud") {
-    return;
-  } else if (miningPossible[selectedToolType].includes(tileToMine)) {
-    replaceTile(e.currentTarget, 0);
-    inventory[tileToMine]++;
-    refreshInventoryDisplay();
+  if (selectedTool) {
+    const selectedToolType = selectedTool.getAttribute("data-toolType");
+    const tileToMine = e.currentTarget.classList[0];
+    if (tileToMine === "sky" || tileToMine === "cloud") {
+      return;
+    } else if (miningPossible[selectedToolType].includes(tileToMine)) {
+      replaceTile(e.currentTarget, 0);
+      inventory[tileToMine]++;
+      refreshInventoryDisplay();
+    } else {
+      selectedTool.classList.add("wrong");
+      selectedTool.addEventListener("animationend", () => {
+        selectedTool.classList.remove("wrong");
+        //msg user?
+      });
+    }
   } else {
-    selectedTool.classList.add("wrong");
-    selectedTool.addEventListener("animationend", () => {
-      selectedTool.classList.remove("wrong");
-      //msg user?
-    });
+    userMessage("please select tool");
   }
 }
 
