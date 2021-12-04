@@ -165,6 +165,17 @@ userMessage("hi there, pick a tool and start mining");
 
 document.querySelector(".restartContainer").addEventListener("click", restart);
 
+document.querySelector(".startGame").addEventListener("click", startGame);
+
+document.querySelector("main").style.display = "none";
+document.querySelector(".sidebar").style.display = "none";
+
+function startGame() {
+  document.querySelector(".splashScreen").style.display = "none";
+  document.querySelector("main").style.display = "flex";
+  document.querySelector(".sidebar").style.display = "block";
+}
+
 function restart() {
   const r = window.confirm("Are you sure you want to restart game?");
   if (r) {
