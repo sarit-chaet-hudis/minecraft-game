@@ -75,13 +75,17 @@ body {
   grid-template-columns: auto 200px;
   background: url("/assets/images/back-cave.png") no-repeat center center/cover; }
 
-main .boardContainer {
-  margin: auto;
-  display: grid;
-  width: 100vmin;
-  height: 100vmin;
-  grid-template-columns: repeat(20, 1fr);
-  grid-template-rows: repeat(20, 1fr); }
+main {
+  position: relative;
+  display: flex;
+  justify-content: center; }
+  main .boardContainer {
+    margin: auto;
+    display: grid;
+    width: 100vmin;
+    height: 100vmin;
+    grid-template-columns: repeat(20, 1fr);
+    grid-template-rows: repeat(20, 1fr); }
 
 .sky {
   background-color: lightskyblue; }
@@ -98,13 +102,30 @@ main .boardContainer {
   background: url("/assets/images/ground-grass.jpeg") no-repeat center center/cover; }
 
 .rock {
+  background-color: gray;
   background: url("/assets/images/stone.jpg") no-repeat center center/cover; }
 
 .wood {
+  background-color: saddlebrown;
   background: url("/assets/images/wood.png") no-repeat center center/cover; }
 
 .leaves {
+  background-color: olivedrab;
   background: url("/assets/images/leaves.jpeg") no-repeat center center/cover; }
 
 .diamonds {
+  background-color: turquoise;
   background: url("/assets/images/diamond.png") no-repeat center center/cover; }
+
+.userMessage {
+  position: absolute;
+  top: 20px;
+  align-self: center;
+  z-index: 200;
+  color: black;
+  font-size: 22px;
+  animation: fadeout 0.5s 3s; }
+
+@keyframes fadeout {
+  100% {
+    opacity: 0; } }

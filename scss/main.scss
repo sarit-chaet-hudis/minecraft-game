@@ -19,6 +19,9 @@ body {
 }
 
 main {
+  position: relative;
+  display: flex;
+  justify-content: center;
   .boardContainer {
     margin: auto;
     display: grid;
@@ -48,17 +51,39 @@ main {
 }
 
 .rock {
+  background-color: gray;
   background: url("/assets/images/stone.jpg") no-repeat center center/cover;
 }
 
 .wood {
+  background-color: saddlebrown;
   background: url("/assets/images/wood.png") no-repeat center center/cover;
 }
 
 .leaves {
+  background-color: olivedrab;
   background: url("/assets/images/leaves.jpeg") no-repeat center center/cover;
 }
 
 .diamonds {
+  background-color: turquoise;
   background: url("/assets/images/diamond.png") no-repeat center center/cover;
+}
+
+.userMessage {
+  position: absolute;
+  top: 20px;
+  
+  align-self: center;
+  z-index: 200;
+  color: black;
+  font-size: 22px;
+  // text-shadow: 2px 2px black;
+  animation: fadeout 0.5s 3s;
+
+  @keyframes fadeout {
+    100% {
+      opacity: 0;
+    }
+  }
 }

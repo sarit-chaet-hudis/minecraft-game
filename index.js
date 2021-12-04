@@ -164,6 +164,8 @@ initResources();
 let miningMode = true;
 // when false, build mode
 
+userMessage("hi there, pick a tool and start mining");
+
 function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
   allTools.forEach((t) => t.classList.remove("selectedTool"));
@@ -217,7 +219,6 @@ function tryMining(e) {
 }
 
 function tryBuilding(e) {
-  console.log("try building");
   const selectedResource = document.querySelector(".selectedResource");
   if (selectedResource) {
     const resourceType = selectedResource.getAttribute("data-resourceType");
@@ -229,6 +230,10 @@ function tryBuilding(e) {
     } else {
       return;
     }
+  } else {
+    userMessage(
+      "please select available resource from inventory, or tool to mine"
+    );
   }
 }
 
@@ -262,6 +267,13 @@ function replaceTile(tileToReplace, newTileType) {
   // Update classes of div to change display:
   tileToReplace.classList.remove(tileToReplace.classList[0]);
   tileToReplace.classList.add(getTileFromNumber[newTileType]);
+}
+
+function userMessage(msg) {
+  const messageDiv = document.querySelector(".userMessage");
+  messageDiv.innerText = msg;
+  messageDiv.style.display = "block";
+  window.setTimeout(() => (messageDiv.style.display = "none"), 3450);
 }
 
 // TODO when building on a cloud and mining, cloud turns to sky.
