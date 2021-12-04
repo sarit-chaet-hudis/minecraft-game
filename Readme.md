@@ -6,6 +6,9 @@ live version is available at: https://minecraft-2d-sarit-chaet-hudis.netlify.app
 
 ---
 
+for now, suited mainly for landscape displays.
+
+Design overview:
 gameboard state is stored in boardMatrix, display is handled by divs and classes.
 Drawing the board is done via drawBoard func, or replaceTile for single tile change.
 mining requires proper tool, see miningPossible obj.
@@ -17,7 +20,6 @@ BuildMode (miningMode=false) enables building and is triggered by selecting avai
 inventory is stored in inventory obj, and display is via dynamically created divs (see refreshInventoryDisplay).
 **
 special emphasis on ux, clear user messages and smooth experience.
-for now, suited mainly for landscape displays.
 **
 known issues:
 after building on a cloud, mining the tile will reveal sky and not cloud texture.

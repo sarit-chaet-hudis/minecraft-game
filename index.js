@@ -125,6 +125,10 @@ function initMatrix() {
 function initTools() {
   const toolsDiv = document.querySelectorAll(".tool");
   toolsDiv.forEach((tool) => tool.addEventListener("click", selectTool));
+  const isSelectedTool = document.querySelector(".selectedTool");
+  if (isSelectedTool) {
+    isSelectedTool.classList.remove("selectedTool");
+  }
 }
 
 function initInventory() {
@@ -162,7 +166,7 @@ let miningMode = true;
 // when false, build mode
 
 const mineSound = new Audio("/assets/sounds/mine-sound-short.mp3");
-const buildSound = new Audio("/assets/sounds/build-sound-short.mp3")
+const buildSound = new Audio("/assets/sounds/build-sound-short.mp3");
 
 userMessage("hi there, pick a tool and start mining");
 
@@ -182,6 +186,8 @@ function startGame() {
 function restart() {
   const r = window.confirm("Are you sure you want to restart game?");
   if (r) {
+    initTools();
+
     initInventory();
 
     refreshInventoryDisplay();
