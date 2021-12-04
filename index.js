@@ -234,7 +234,8 @@ function refreshInventoryDisplay() {
     newResource.classList.add("resource");
     if (value > 0) {
       newResource.innerText = value;
-      newResource.style.background = "blue";
+      // newResource.style.background = "blue";
+      newResource.classList.add(key);
       resourcesDisplay.prepend(newResource);
     } else {
       newResource.classList.add("empty");
