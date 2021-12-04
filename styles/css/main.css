@@ -129,3 +129,17 @@ main {
 @keyframes fadeout {
   100% {
     opacity: 0; } }
+
+.restartContainer {
+  position: absolute;
+  bottom: 20px;
+  right: 20px; }
+  .restartContainer button {
+    background-color: #c6c6c6;
+    border-radius: 0;
+    padding: 10px 15px;
+    font-size: 18px;
+    border-width: 4px;
+    border-color: white #484848 #484848 white; }
+    .restartContainer button:hover {
+      background-color: white; }

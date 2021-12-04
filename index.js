@@ -127,11 +127,10 @@ function initTools() {
   toolsDiv.forEach((tool) => tool.addEventListener("click", selectTool));
 }
 
-function initResources() {
-  const resourcesDivs = document.querySelectorAll(".resource");
-  resourcesDivs.forEach((resource) =>
-    resource.addEventListener("click", selectResource)
-  );
+function initInventory() {
+  for (const resource in inventory) {
+    inventory[resource] = 0;
+  }
 }
 
 refreshInventoryDisplay();
@@ -159,12 +158,29 @@ drawBoard(boardMatrix);
 
 initTools();
 
-initResources();
-
 let miningMode = true;
 // when false, build mode
 
 userMessage("hi there, pick a tool and start mining");
+
+document.querySelector(".restartContainer").addEventListener("click", restart);
+
+function restart() {
+  const r = window.confirm("Are you sure you want to restart game?");
+  if (r) {
+    initInventory();
+
+    refreshInventoryDisplay();
+
+    miningMode = true;
+
+    boardMatrix = initMatrix();
+
+    drawBoard(boardMatrix);
+
+    userMessage("hi there, pick a tool and start mining");
+  }
+}
 
 function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
