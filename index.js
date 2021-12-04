@@ -161,6 +161,9 @@ initTools();
 let miningMode = true;
 // when false, build mode
 
+const mineSound = new Audio("/assets/sounds/mine-sound-short.mp3");
+const buildSound = new Audio("/assets/sounds/build-sound-short.mp3")
+
 userMessage("hi there, pick a tool and start mining");
 
 document.querySelector(".restartContainer").addEventListener("click", restart);
@@ -241,6 +244,7 @@ function tryMining(e) {
     if (tileToMine === "sky" || tileToMine === "cloud") {
       return;
     } else if (miningPossible[selectedToolType].includes(tileToMine)) {
+      mineSound.play();
       replaceTile(e.currentTarget, 0);
       inventory[tileToMine]++;
       refreshInventoryDisplay();
@@ -262,6 +266,7 @@ function tryBuilding(e) {
     const resourceType = selectedResource.getAttribute("data-resourceType");
     const placeToBuild = e.currentTarget.classList[0];
     if (placeToBuild === "sky" || placeToBuild === "cloud") {
+      buildSound.play();
       replaceTile(e.currentTarget, getNumfromTile(resourceType));
       inventory[resourceType]--;
       refreshInventoryDisplay(resourceType);
