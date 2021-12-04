@@ -162,12 +162,21 @@ drawBoard(boardMatrix);
 
 initTools();
 
+function initCursor() {
+  const body = document.querySelector("body");
+  body.style.cursor = "default";
+}
+
 const cursorList = {
   axe: "assets/cursors/axe-cursor.cur",
   pickaxe: "assets/cursors/pickaxe-cursor.cur",
   shovel: "assets/cursors/shovel-cursor.cur",
-  grass: "/assets/cursors/grass-cursor.cur",
   dirt: "/assets/cursors/dirt-cursor.cur",
+  grass: "/assets/cursors/grass-cursor.cur",
+  rock: "/assets/cursors/rock-cursor.cur",
+  wood: "/assets/cursors/wood-cursor.cur",
+  leaves: "/assets/cursors/leaves-cursor.cur",
+  diamonds: "/assets/cursors/diamond-cursor.cur",
 };
 
 let miningMode = true;
@@ -195,6 +204,8 @@ function restart() {
   const r = window.confirm("Are you sure you want to restart game?");
   if (r) {
     initTools();
+
+    initCursor();
 
     initInventory();
 
@@ -230,9 +241,9 @@ function selectTool(e) {
       d.addEventListener("click", tryMining);
     });
   }
+  // set custom cursor
   const currentTool = e.currentTarget.getAttribute("data-toolType");
   const body = document.querySelector("body");
-  console.log();
   body.style.cursor = `url(${cursorList[currentTool]}), auto`;
 }
 
@@ -258,6 +269,10 @@ function selectResource(e) {
       d.addEventListener("click", tryBuilding);
     });
   }
+  // set custom cursor
+  const currResource = e.currentTarget.getAttribute("data-resourcetype");
+  const body = document.querySelector("body");
+  body.style.cursor = `url(${cursorList[currResource]}), auto`;
 }
 
 function tryMining(e) {
@@ -274,9 +289,9 @@ function tryMining(e) {
       refreshInventoryDisplay();
     } else {
       selectedTool.classList.add("wrong");
+      userMessage(`you can't mine ${tileToMine} with ${selectedToolType}`);
       selectedTool.addEventListener("animationend", () => {
         selectedTool.classList.remove("wrong");
-        //msg user?
       });
     }
   } else {
@@ -293,6 +308,9 @@ function tryBuilding(e) {
       buildSound.play();
       replaceTile(e.currentTarget, getNumfromTile(resourceType));
       inventory[resourceType]--;
+      if (inventory[resourceType] === 0) {
+        initCursor();
+      }
       refreshInventoryDisplay(resourceType);
     } else {
       return;
