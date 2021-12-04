@@ -168,9 +168,6 @@ function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
   allTools.forEach((t) => t.classList.remove("selectedTool"));
   e.currentTarget.classList.add("selectedTool");
-  //check if miningMode = true => no need to do anything
-  //if miningMode = false => set to true ,
-  //  set board listeners to tryMining
   if (!miningMode) {
     miningMode = true;
     const boardElement = document.querySelector(".boardContainer");
@@ -183,7 +180,6 @@ function selectTool(e) {
 }
 
 function selectResource(e) {
-  console.log(`mining mode when selecting resource: ${miningMode}`);
   const prevSelected = document.querySelector(".selectedResource");
   if (prevSelected) {
     prevSelected.classList.remove("selectedResource");
@@ -191,7 +187,6 @@ function selectResource(e) {
   e.currentTarget.classList.add("selectedResource");
   if (miningMode) {
     miningMode = false;
-    console.log(`miningMode now set on false:  ${miningMode}`);
     const boardElement = document.querySelector(".boardContainer");
     let allBoardDivs = boardElement.querySelectorAll(":scope > div");
     allBoardDivs.forEach((d) => {
@@ -222,23 +217,18 @@ function tryMining(e) {
 }
 
 function tryBuilding(e) {
+  console.log("try building");
   const selectedResource = document.querySelector(".selectedResource");
-  const resourceType = selectedResource.getAttribute("data-resourceType");
-  const placeToBuild = e.currentTarget.classList[0];
-  if (placeToBuild === "sky" || placeToBuild === "cloud") {
-    inventory[resourceType]--;
-    -selectedResource.innerText--;
-    console.log(selectedResource.innerText);
-    console.log(inventory[resourceType]);
-    // if (selectedResource.innerText == 0) {
-    //   refreshInventoryDisplay(resourceType);
-    // }
-    const x = e.currentTarget.getAttribute("x");
-    const y = e.currentTarget.getAttribute("y");
-    boardMatrix[y][x] = getNumfromTile(resourceType);
-    drawBoard(boardMatrix);
-  } else {
-    return;
+  if (selectedResource) {
+    const resourceType = selectedResource.getAttribute("data-resourceType");
+    const placeToBuild = e.currentTarget.classList[0];
+    if (placeToBuild === "sky" || placeToBuild === "cloud") {
+      replaceTile(e.currentTarget, getNumfromTile(resourceType));
+      inventory[resourceType]--;
+      refreshInventoryDisplay(resourceType);
+    } else {
+      return;
+    }
   }
 }
 
@@ -265,9 +255,11 @@ function refreshInventoryDisplay(selected = null) {
 }
 
 function replaceTile(tileToReplace, newTileType) {
+  // Update matrix:
   const x = tileToReplace.getAttribute("x");
   const y = tileToReplace.getAttribute("y");
   boardMatrix[y][x] = newTileType;
+  // Update classes of div to change display:
   tileToReplace.classList.remove(tileToReplace.classList[0]);
   tileToReplace.classList.add(getTileFromNumber[newTileType]);
 }
