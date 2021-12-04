@@ -1,7 +1,35 @@
 .splashScreen {
+  background: url("/assets/images/wallpaper-minecraft.jpg") center center/cover;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .logo {
+      background: url("/assets/images/Minecraft-Logo.png") no-repeat;
+      background-size: contain;
+      width: 800px;
+      height: 150px;
+  }
+
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px black;
+  a, a:visited {
+      text-decoration: none;
+      color: inherit;
+    }
+    a:hover {
+        color: hotpink;
+    }
+    h1 {
+      font-family: "minecraft-heavy";
+      color: black;
+      text-shadow: none;
+    }
 }

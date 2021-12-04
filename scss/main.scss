@@ -6,6 +6,11 @@
   src: url("/assets/fonts/Minecraft.ttf");
 }
 
+@font-face {
+  font-family: "minecraft-heavy";
+  src: url("/assets/fonts/MinecraftTen-VGORe.ttf");
+}
+
 * {
   font-family: "minecraft", "Courier New", Courier, monospace;
   box-sizing: border-box;
@@ -95,6 +100,7 @@ main {
   right: 20px;
 }
 button {
+  cursor: pointer;
   background-color: #c6c6c6;
   border-radius: 0;
   padding: 10px 15px;

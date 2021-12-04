@@ -1,9 +1,31 @@
 .splashScreen {
+  background: url("/assets/images/wallpaper-minecraft.jpg") center center/cover;
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%; }
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  color: white;
+  text-shadow: 2px 2px black; }
+  .splashScreen .logo {
+    background: url("/assets/images/Minecraft-Logo.png") no-repeat;
+    background-size: contain;
+    width: 800px;
+    height: 150px; }
+  .splashScreen a, .splashScreen a:visited {
+    text-decoration: none;
+    color: inherit; }
+  .splashScreen a:hover {
+    color: hotpink; }
+  .splashScreen h1 {
+    font-family: "minecraft-heavy";
+    color: black;
+    text-shadow: none; }
 
 .sidebar {
   background-color: rgba(0, 0, 0, 0.3);
@@ -60,8 +82,8 @@
     padding-top: 36px;
     padding-right: 2px;
     font-size: 16px;
-    color: white;
     text-align: right;
+    color: white;
     text-shadow: 2px 2px black; }
   .inventory .empty {
     background: #8b8b8b; }
@@ -72,6 +94,10 @@
 @font-face {
   font-family: "minecraft";
   src: url("/assets/fonts/Minecraft.ttf"); }
+
+@font-face {
+  font-family: "minecraft-heavy";
+  src: url("/assets/fonts/MinecraftTen-VGORe.ttf"); }
 
 * {
   font-family: "minecraft", "Courier New", Courier, monospace;
@@ -144,6 +170,7 @@ main {
   right: 20px; }
 
 button {
+  cursor: pointer;
   background-color: #c6c6c6;
   border-radius: 0;
   padding: 10px 15px;
