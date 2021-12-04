@@ -62,10 +62,29 @@ function initMatrix() {
       }
     }
   }
+  //grass
+  res[12][4] = 2;
+  res[12][3] = 2;
+  res[12][19] = 2;
+  res[12][18] = 2;
+  res[12][17] = 2;
+  res[12][16] = 2;
+
   //wood
+  res[12][2] = 4;
+  res[11][2] = 4;
+
   res[12][13] = 4;
   res[11][13] = 4;
   //leaves
+  res[10][1] = 5;
+  res[10][2] = 5;
+  res[10][3] = 5;
+  res[9][1] = 5;
+  res[9][2] = 5;
+  res[9][3] = 5;
+  res[8][2] = 5;
+
   res[10][11] = 5;
   res[10][12] = 5;
   res[10][13] = 5;
@@ -82,8 +101,9 @@ function initMatrix() {
   res[7][13] = 5;
 
   //diamonds
-  res[19][4] = 6;
+  res[18][2] = 6;
   res[18][18] = 6;
+  res[19][10] = 6;
 
   //heart cloud
   res[5][4] = 7;

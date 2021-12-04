@@ -11,25 +11,60 @@
   justify-content: center;
 
   .logo {
-      background: url("/assets/images/Minecraft-Logo.png") no-repeat;
-      background-size: contain;
-      width: 800px;
-      height: 150px;
+    background: url("/assets/images/Minecraft-Logo.png") no-repeat;
+    background-size: contain;
+    width: 800px;
+    height: 150px;
   }
 
   font-size: 24px;
   color: white;
   text-shadow: 2px 2px black;
-  a, a:visited {
-      text-decoration: none;
-      color: inherit;
+  a,
+  a:visited {
+    text-decoration: none;
+    color: inherit;
+  }
+  a:hover {
+    color: hotpink;
+  }
+  h1 {
+    font-family: "minecraft-heavy";
+    color: black;
+    text-shadow: none;
+  }
+
+  .startGame {
+    animation: wiggle 3s 2s ease-in-out infinite;
+  }
+
+  @keyframes hop {
+    0% {
+      bottom: 0;
     }
-    a:hover {
-        color: hotpink;
+    10% {
+      bottom: 5px;
     }
-    h1 {
-      font-family: "minecraft-heavy";
-      color: black;
-      text-shadow: none;
+    20% {
+      bottom: 0;
     }
+  }
+
+  @keyframes wiggle {
+    0% {
+      transform: rotate(0deg);
+    }
+    10% {
+      transform: rotate(0deg);
+    }
+    12% {
+      transform: rotate(5deg);
+    }
+    16% {
+      transform: rotate(-5deg);
+    }
+    20% {
+      transform: rotate(0deg);
+    }
+  }
 }

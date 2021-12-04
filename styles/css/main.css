@@ -17,7 +17,8 @@
     background-size: contain;
     width: 800px;
     height: 150px; }
-  .splashScreen a, .splashScreen a:visited {
+  .splashScreen a,
+  .splashScreen a:visited {
     text-decoration: none;
     color: inherit; }
   .splashScreen a:hover {
@@ -26,6 +27,28 @@
     font-family: "minecraft-heavy";
     color: black;
     text-shadow: none; }
+  .splashScreen .startGame {
+    animation: wiggle 3s 2s ease-in-out infinite; }
+
+@keyframes hop {
+  0% {
+    bottom: 0; }
+  10% {
+    bottom: 5px; }
+  20% {
+    bottom: 0; } }
+
+@keyframes wiggle {
+  0% {
+    transform: rotate(0deg); }
+  10% {
+    transform: rotate(0deg); }
+  12% {
+    transform: rotate(5deg); }
+  16% {
+    transform: rotate(-5deg); }
+  20% {
+    transform: rotate(0deg); } }
 
 .sidebar {
   background-color: rgba(0, 0, 0, 0.3);
@@ -173,7 +196,7 @@ button {
   cursor: pointer;
   background-color: #c6c6c6;
   border-radius: 0;
-  padding: 10px 15px;
+  padding: 10px 25px;
   font-size: 18px;
   font-weight: normal;
   border-width: 4px;
