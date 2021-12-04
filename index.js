@@ -162,6 +162,14 @@ drawBoard(boardMatrix);
 
 initTools();
 
+const cursorList = {
+  axe: "assets/cursors/axe-cursor.cur",
+  pickaxe: "assets/cursors/pickaxe-cursor.cur",
+  shovel: "assets/cursors/shovel-cursor.cur",
+  grass: "/assets/cursors/grass-cursor.cur",
+  dirt: "/assets/cursors/dirt-cursor.cur",
+};
+
 let miningMode = true;
 // when false, build mode
 
@@ -203,13 +211,16 @@ function restart() {
 }
 
 function selectTool(e) {
+  //make sure only one is selected
   const allTools = document.querySelectorAll(".tool");
   allTools.forEach((t) => t.classList.remove("selectedTool"));
   e.currentTarget.classList.add("selectedTool");
+  // unselect resource if one is currently selected
   const isSelectedResource = document.querySelector(".selectedResource");
   if (isSelectedResource) {
     isSelectedResource.classList.remove("selectedResource");
   }
+  // change board to mining Mode if its not already
   if (!miningMode) {
     miningMode = true;
     const boardElement = document.querySelector(".boardContainer");
@@ -219,18 +230,25 @@ function selectTool(e) {
       d.addEventListener("click", tryMining);
     });
   }
+  const currentTool = e.currentTarget.getAttribute("data-toolType");
+  const body = document.querySelector("body");
+  console.log();
+  body.style.cursor = `url(${cursorList[currentTool]}), auto`;
 }
 
 function selectResource(e) {
+  //make sure only one is selected
   const prevSelected = document.querySelector(".selectedResource");
   if (prevSelected) {
     prevSelected.classList.remove("selectedResource");
   }
   e.currentTarget.classList.add("selectedResource");
+  // unselect tool if one is currently selected
   const isSelectedTool = document.querySelector(".selectedTool");
   if (isSelectedTool) {
     isSelectedTool.classList.remove("selectedTool");
   }
+  // change board to build Mode if its not already
   if (miningMode) {
     miningMode = false;
     const boardElement = document.querySelector(".boardContainer");
