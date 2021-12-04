@@ -150,6 +150,7 @@ function drawBoard(boardMatrix) {
       newTile.setAttribute("x", j);
       newTile.classList.add(getTileFromNumber[boardMatrix[i][j]]);
       boardContainer.appendChild(newTile);
+      newTile.addEventListener("click", tryMining);
     }
   }
 }
@@ -160,44 +161,57 @@ initTools();
 
 initResources();
 
+let miningMode = true;
+// when false, build mode
+
 function selectTool(e) {
   const allTools = document.querySelectorAll(".tool");
   allTools.forEach((t) => t.classList.remove("selectedTool"));
   e.currentTarget.classList.add("selectedTool");
-  const boardElement = document.querySelector(".boardContainer");
-  let allBoardDivs = boardElement.querySelectorAll(":scope > div");
-  allBoardDivs.forEach((d) => {
-    d.removeEventListener("click", tryBuilding);
-    d.addEventListener("click", tryMining);
-  });
+  //check if miningMode = true => no need to do anything
+  //if miningMode = false => set to true ,
+  //  set board listeners to tryMining
+  if (!miningMode) {
+    miningMode = true;
+    const boardElement = document.querySelector(".boardContainer");
+    let allBoardDivs = boardElement.querySelectorAll(":scope > div");
+    allBoardDivs.forEach((d) => {
+      d.removeEventListener("click", tryBuilding);
+      d.addEventListener("click", tryMining);
+    });
+  }
 }
 
 function selectResource(e) {
-  const allResouces = document.querySelectorAll(".resource");
-  allResouces.forEach((r) => r.classList.remove("selectedResource"));
+  console.log(`mining mode when selecting resource: ${miningMode}`);
+  const prevSelected = document.querySelector(".selectedResource");
+  if (prevSelected) {
+    prevSelected.classList.remove("selectedResource");
+  }
   e.currentTarget.classList.add("selectedResource");
-  const boardElement = document.querySelector(".boardContainer");
-  let allBoardDivs = boardElement.querySelectorAll(":scope > div");
-  allBoardDivs.forEach((d) => {
-    d.removeEventListener("click", tryMining);
-    d.addEventListener("click", tryBuilding);
-  });
+  if (miningMode) {
+    miningMode = false;
+    console.log(`miningMode now set on false:  ${miningMode}`);
+    const boardElement = document.querySelector(".boardContainer");
+    let allBoardDivs = boardElement.querySelectorAll(":scope > div");
+    allBoardDivs.forEach((d) => {
+      d.removeEventListener("click", tryMining);
+      d.addEventListener("click", tryBuilding);
+    });
+  }
 }
 
 function tryMining(e) {
-  const selectedTool = document.querySelector(".selectedTool"); //TODO no error when no tool selected
+  const selectedTool = document.querySelector(".selectedTool");
+  if (!selectTool) return;
   const selectedToolType = selectedTool.getAttribute("data-toolType");
   const tileToMine = e.currentTarget.classList[0];
   if (tileToMine === "sky" || tileToMine === "cloud") {
     return;
   } else if (miningPossible[selectedToolType].includes(tileToMine)) {
-    const x = e.currentTarget.getAttribute("x");
-    const y = e.currentTarget.getAttribute("y");
-    boardMatrix[y][x] = 0;
-    drawBoard(boardMatrix);
+    replaceTile(e.currentTarget, 0);
     inventory[tileToMine]++;
     refreshInventoryDisplay();
-    //recreate single tile only? // TODO
   } else {
     selectedTool.classList.add("wrong");
     selectedTool.addEventListener("animationend", () => {
@@ -213,7 +227,12 @@ function tryBuilding(e) {
   const placeToBuild = e.currentTarget.classList[0];
   if (placeToBuild === "sky" || placeToBuild === "cloud") {
     inventory[resourceType]--;
-    refreshInventoryDisplay(resourceType);
+    -selectedResource.innerText--;
+    console.log(selectedResource.innerText);
+    console.log(inventory[resourceType]);
+    // if (selectedResource.innerText == 0) {
+    //   refreshInventoryDisplay(resourceType);
+    // }
     const x = e.currentTarget.getAttribute("x");
     const y = e.currentTarget.getAttribute("y");
     boardMatrix[y][x] = getNumfromTile(resourceType);
@@ -226,17 +245,16 @@ function tryBuilding(e) {
 function refreshInventoryDisplay(selected = null) {
   const resourcesDisplay = document.querySelector(".inventory");
   resourcesDisplay.innerHTML = "";
-  Object.entries(inventory).forEach(([key, value]) => {
+  Object.entries(inventory).forEach(([inventoryKey, value]) => {
     const newResource = document.createElement("div");
     newResource.classList.add("resource");
-    newResource.setAttribute("data-resourceType", key);
+    newResource.setAttribute("data-resourceType", inventoryKey);
     if (value > 0) {
       newResource.innerText = value;
-      newResource.classList.add(key);
+      newResource.classList.add(inventoryKey);
       resourcesDisplay.prepend(newResource);
       newResource.addEventListener("click", selectResource);
-      console.log(`key is ${key} and selected is ${selected}`);
-      if (selected === key) {
+      if (selected === inventoryKey) {
         newResource.classList.add("selectedResource");
       }
     } else {
@@ -245,3 +263,14 @@ function refreshInventoryDisplay(selected = null) {
     }
   });
 }
+
+function replaceTile(tileToReplace, newTileType) {
+  const x = tileToReplace.getAttribute("x");
+  const y = tileToReplace.getAttribute("y");
+  boardMatrix[y][x] = newTileType;
+  tileToReplace.classList.remove(tileToReplace.classList[0]);
+  tileToReplace.classList.add(getTileFromNumber[newTileType]);
+}
+
+// TODO when building on a cloud and mining, cloud turns to sky.
+// the skies should be treated as background/ display only
