@@ -8,13 +8,15 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: start;
+  position: relative;
 
   .logo {
-    background: url("/assets/images/Minecraft-Logo.png") no-repeat;
-    background-size: contain;
+    background: url("/assets/images/Minecraft-Logo.png") no-repeat center;
+    background-size: 70%;
     width: 800px;
-    height: 150px;
+    min-height: 150px;
+    margin-top: 50px;
   }
 
   font-size: 24px;
@@ -38,18 +40,6 @@
     animation: wiggle 3s 2s ease-in-out infinite;
   }
 
-  @keyframes hop {
-    0% {
-      bottom: 0;
-    }
-    10% {
-      bottom: 5px;
-    }
-    20% {
-      bottom: 0;
-    }
-  }
-
   @keyframes wiggle {
     0% {
       transform: rotate(0deg);
@@ -67,4 +57,22 @@
       transform: rotate(0deg);
     }
   }
+
+  button {
+    width: 300px;
+  }
+}
+
+.instructionsDisplay {
+  padding: 30px;
+  width: 800px;
+  text-align: center;
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: 40vh;
+  left: calc(50% - 400px);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  line-height: 1.7;
 }

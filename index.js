@@ -210,6 +210,19 @@ userMessage("hi there, pick a tool and start mining");
 document.querySelector(".restartContainer").addEventListener("click", restart);
 
 document.querySelector(".startGame").addEventListener("click", startGame);
+document
+  .querySelector(".instructionsButton")
+  .addEventListener("click", showInstructions);
+document
+  .querySelector(".instructionsClose")
+  .addEventListener("click", closeInstructions);
+
+function showInstructions() {
+  document.querySelector(".instructionsDisplay").style.display = "flex";
+}
+function closeInstructions() {
+  document.querySelector(".instructionsDisplay").style.display = "none";
+}
 
 document.querySelector("main").style.display = "none";
 document.querySelector(".sidebar").style.display = "none";
