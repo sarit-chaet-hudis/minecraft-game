@@ -394,5 +394,8 @@ function userMessage(msg) {
   window.setTimeout(() => (messageDiv.style.display = "none"), 3450);
 }
 
+// TODO use initGame to initialize game in one func
+// instead of all the init calls..
+
 // TODO when building on a cloud and mining, cloud turns to sky.
 // the skies should be treated as background/ display only
